@@ -7,7 +7,7 @@ export default function Page() {
     const [todos, setTodos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [editinStateId, setCurrentEditingStateId] = useState(null);
-    const [editingFlag,setEditingFlag]=useState(false);
+    const [editingFlag, setEditingFlag] = useState(false);
     const TODOS_PER_PAGE = 10;
     const startIndex = (currentPage - 1) * TODOS_PER_PAGE;
     const endIndex = startIndex + TODOS_PER_PAGE;
@@ -18,6 +18,7 @@ export default function Page() {
     function onDescriptionChange(e) {
         setDescription(e.target.value);
     }
+
     function onPriorityChange(e) {
         setPriority(e.target.value);
     }
@@ -46,7 +47,7 @@ export default function Page() {
         setCurrentEditingStateId(p.id);
         setTodo(p.todo);
         setDescription(p.description);
-        console.log("editing state id == ",editinStateId);
+        console.log("editing state id == ", editinStateId);
     }
     function handleUpdate() {
         setTodos(todos => todos.map((singletodo) => (

@@ -58,12 +58,11 @@ export default function Page() {
         ))
         setEditingState(null);
     }
-    function handleIncrease()
-    {
-        setCurrentPage(currentPage+1);
+    function handleIncrease() {
+        setCurrentPage(currentPage + 1);
     }
-    function handleDecrease(){
-        setCurrentPage(currentPage-1);
+    function handleDecrease() {
+        setCurrentPage(currentPage - 1);
     }
     return (
         <div className="">
@@ -109,12 +108,12 @@ export default function Page() {
             </div>
             <div className="flex items-center space-x-4">
                 <button
-                onClick={handleDecrease} 
-                className="bg-teal-800 text-white rounded-sm px-2 py-0.5 items-center">-</button>
+                    onClick={handleDecrease}
+                    className="bg-teal-800 text-white rounded-sm px-2 py-0.5 items-center">-</button>
                 <span className="text-xl text-zinc-600">{currentPage}</span>
-                <button 
-                onClick={handleIncrease}
-                className="bg-teal-800 text-white rounded-sm px-2 py-0.5 items-center">+</button>
+                <button
+                    onClick={handleIncrease}
+                    className="bg-teal-800 text-white rounded-sm px-2 py-0.5 items-center">+</button>
             </div>
             <div>
                 {visiblePrants.map((p) => (
