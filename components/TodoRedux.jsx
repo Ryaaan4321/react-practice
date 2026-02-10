@@ -3,6 +3,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, updateTodo, toggleTodo, removeTodo } from "@/redux/todoslice";
 import { useState } from "react";
+import { addTodoAsync } from "@/redux/todoThunk";
 
 export default function TodoApp() {
     const todos = useSelector(state => state.todo.todos);
@@ -14,6 +15,18 @@ export default function TodoApp() {
     function handleAdd() {
         dispatch(
             addTodo({
+                id: Date.now(),
+                name,
+                description: desc,
+                done: false
+            })
+        );
+        setName("");
+        setDesc("");
+    }
+    function handleAddFromThunk() {
+        dispatch(
+            addTodoAsync({
                 id: Date.now(),
                 name,
                 description: desc,
@@ -40,9 +53,10 @@ export default function TodoApp() {
                 placeholder="description"
                 onChange={e => setDesc(e.target.value)}
             />
-
-            <button onClick={handleAdd}>Add</button>
-
+            <div className="flex space-x-1">
+                <button className="px-0.5 py-0.5 bg-yellow-500 text-white rounded-sm" onClick={handleAdd}>Add</button>
+                <button className="px-0.5 py-0.5 bg-green-500 text-white rounded-sm" onClick={handleAddFromThunk}>Add from Thunk Middleware</button>
+            </div>
             {todos.map(todo => (
                 <div key={todo.id}>
 
