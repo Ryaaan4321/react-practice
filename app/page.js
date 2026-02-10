@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
+import Element from "@/components/CreateaElement";
 
 export default function Home() {
   const controller = new AbortController();
@@ -9,6 +10,12 @@ export default function Home() {
   const headingRef = useRef();
   function sayHi() {
     alert("hi")
+  }
+  const [count,setCount]=useState(0);
+  const [cnt,setcnt]=useState(0);
+  function batching(){
+    setCount(prev=>prev+1);
+    setcnt(prev=>prev+1);
   }
   function noHi() {
     document.head.
@@ -35,9 +42,13 @@ export default function Home() {
   })
   return (
     <div>
+      <Element/>
       <h1>Contents</h1>
+      {cnt}
+      <br></br>
+      {count}
       <h1 className="" id="elem" ref={headingRef}>hello hello </h1>
-      <button onClick={noHi} className="bg-blue-800 text-white cursor-pointer"> hell hell</button>
+      <button onClick={batching} className="bg-blue-800 text-white cursor-pointer"> hell hell</button>
     </div>
   );
 }
