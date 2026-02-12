@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRef } from "react";
 import { memo } from "react";
-import { useDispatch } from "react-redux";
+import { useReducer } from "react";
 const Parent = memo(function fn({ name, email }) {
     console.log("memo function got called")
     return (
@@ -15,39 +15,48 @@ const Parent = memo(function fn({ name, email }) {
     )
 })
 const initialState = {
-    companyname: "",
-    location: "",
-    phoneNumber: "",
+    companyname: "aa",
+    locationn: "lkw",
+    phoneNumber: "09",
     error: null
 }
 function reducer(state, action) {
     switch (action.type) {
         case "namechange":
             return {
-                ...initialState,
-                name: state.companyname,
-            }
+                ...state,
+                companyname: action.payload
+            };
+
         case "locationchange":
             return {
-                ...initialState,
-                email: state.location
-            }
+                ...state,
+                locationn: action.payload
+            };
+
         case "numberchange":
             return {
-                ...initialState,
-                phoneNumber: state.phoneNumber
-            }
+                ...state,
+                phoneNumber: action.payload
+            };
+
         case "error":
             return {
-                ...initialState,
-                error: "something bad happened"
-            }
+                ...state,
+                companyname: "",
+                locationn: "",
+                phoneNumber: "",
+                error: action.payload
+            };
+
         case "reset":
-            return {
-                ...initialState
-            }   
+            return initialState;
+
+        default:
+            return state;
     }
 }
+
 export default function Page() {
     const [statee, setState] = useState(0);
     const [cnt, setcnt] = useState(0);
@@ -55,10 +64,10 @@ export default function Page() {
     const [mx, setMx] = useState(10000);
     const [email, setemail] = useState("");
     const [name, setname] = useState("");
-    const [state,dispatch]=useDispatch(reducer,initialState);
-    const [companyName,setCompanyName]=useState("");
-    const [location,setLocation]=useState("");
-    const [phoneNumber,setPhoneNumber]=useState("");
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const [companyName, setCompanyName] = useState("");
+    const [location, setLocation] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     function cal(mx) {
         let sm = 0;
         for (let i = mx; i >= 0; i--) {
@@ -82,12 +91,42 @@ export default function Page() {
     }
     return (
         <>
-        <div>
             <div>
-                {/* <input onChange={(e)=>setCompanyName(e.target.value)}></input> */}
-                {/* <button>companyname</button> */}
+                <div>
+                    <p>Company: {state.companyName}</p>
+                    <p>Location: {String(state.locationn)}</p>
+                    <p>Number: {state.phoneNumber}</p>
+                    <p>Error : {state.error}</p>
+                </div>
+                <div className="space-x-1">
+                    <input placeholder="company name" onChange={(e) => setCompanyName(e.target.value)}></input>
+                    <input placeholder="location name" onChange={(e) => setLocation(e.target.value)}></input>
+                    <input placeholder="number" onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                </div>
+                <div className="space-x-1">
+
+                    <button
+                        className="px-1 py-0.5 bg-green-900 rounded-t-md mt-2 text-white cursor-pointer"
+                        onClick={() => dispatch({ type: "namechange", payload: companyName })}
+                    >changeCompanayName</button>
+                    <button
+                        className="px-1 py-0.5 bg-sky-800 rounded-t-md mt-2 text-white cursor-pointer"
+                        onClick={() => dispatch({ type: "locationchange", payload: location })}
+                    >changeLocation</button>
+                    <button
+                        className="px-1 py-0.5 bg-lime-900 rounded-t-md mt-2 text-white cursor-pointer"
+                        onClick={() => dispatch({ type: "numberchange", payload: phoneNumber })}
+                    >changeNumber</button>
+                    <button
+                        className="px-1 py-0.5 bg-red-900 rounded-t-md mt-2 text-white cursor-pointer"
+                        onClick={() => dispatch({ type: "error", payload: "Something went wrong" })}
+                    >error</button>
+                    <button
+                        className="px-1 py-0.5 bg-gray-500 rounded-t-md mt-2 text-white cursor-pointer"
+                        onClick={() => dispatch({ type: "reset" })}
+                    >reset</button>
+                </div>
             </div>
-        </div>
             <div>
                 <p>memo here</p>
                 <div className="flex flex-col">
