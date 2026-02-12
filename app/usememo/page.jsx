@@ -1,5 +1,13 @@
 "use client";
+import UserSearch from "@/components/Usememo";
 import { useMemo, useState } from "react";
+const users = [
+    { id: 1, name: 'Sudheer' },
+    { id: 2, name: 'Brendon' },
+    { id: 3, name: 'Charlie' },
+    { id: 4, name: 'Dary' },
+    { id: 5, name: 'Eden' }
+];
 
 export default function Page() {
     const [memoState, setMemoState] = useState(0);
@@ -43,6 +51,8 @@ export default function Page() {
             <button onClick={() => setNormalState(prev => prev + 1)}>
                 normal
             </button>
+            <div>search component example of the use memo</div>
+            <UserSearch users={users} />
         </div>
     );
 }

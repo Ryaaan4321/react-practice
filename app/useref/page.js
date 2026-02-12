@@ -44,9 +44,9 @@ export default function Page() {
             <p>count : {count}</p> */}
             <p>Interval Ref : {intervalRef.current}</p>
             <p>count : {count}</p>
-            <button onClick={handleClick}>inc</button>
+            <button  className="cursor-pointer px-1 text-white rounded py-0.5 bg-green-800" onClick={handleClick}>inc</button>
             <br></br>
-            <button onClick={handleClick2}>inc2</button>
+            <button className="cursor-pointer px-1 text-white rounded py-0.5 bg-yellow-800" onClick={handleClick2}>inc2</button>
         </div>
     )
 }
