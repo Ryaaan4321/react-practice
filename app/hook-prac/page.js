@@ -15,7 +15,7 @@ const Parent = memo(function fn({ name, email }) {
     )
 })
 const initialState = {
-    companyname: "aa",
+    companyName: "aa",
     locationn: "lkw",
     phoneNumber: "09",
     error: null
@@ -25,7 +25,7 @@ function reducer(state, action) {
         case "namechange":
             return {
                 ...state,
-                companyname: action.payload
+                companyName: action.payload
             };
 
         case "locationchange":
