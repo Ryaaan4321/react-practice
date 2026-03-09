@@ -89,6 +89,7 @@ export default function Page() {
     function refIncremnt() {
         ref.current = ref.current + 1;
     }
+    
     return (
         <>
             <div>

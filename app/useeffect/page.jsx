@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export default function Page() {
     const [count, setCount] = useState(0);
+    const isFirstRender=useRef(true);
     /*
     In useEffect, whenever a dependency changes or the component re-renders,
     React first runs the cleanup function from the previous effect.
@@ -13,8 +14,16 @@ export default function Page() {
     they may continue to reference old state or props, which can lead to stale data
     or unexpected behavior.
     */
+   useEffect(()=>{
+    if(isFirstRender.current){
+        alert("first render");
+        isFirstRender.current=false;
+        return;
+    }
+    alert("Second render");
+   },[count])
     useEffect(() => {
-        console.log("effect");
+        alert("effect");
         return () => {
             console.log("from the clearnupp");
         }
