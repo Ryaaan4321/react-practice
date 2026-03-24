@@ -1,8 +1,6 @@
 "use client"
 import React, { useState, useMemo } from 'react';
 
-
-
 export default function UserSearch({ users }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [counter, setCounter] = useState(0);
@@ -14,7 +12,6 @@ export default function UserSearch({ users }) {
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm]);
-
   return (
     <div>
       <h2>Counter: {counter}</h2>
