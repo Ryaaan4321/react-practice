@@ -40,9 +40,18 @@ export default function Parent() {
         <div>
             <h1>useImperativeHandle Dialog Example</h1>
             <div className='flex  space-x-2 '>
-                <button className='cursor-pointer bg-green-800 text-white rounded px-1' onClick={() => dialogRef.current.open()}>Open Dialog</button>
-                <button className='cursor-pointer bg-red-800 text-white rounded px-1'onClick={() => dialogRef.current.reset()}>Reset Dialog</button>
-                <button  className='cursor-pointer bg-yellow-800 text-white rounded px-1' onClick={() => dialogRef.current.close()}>Close Dialog</button>
+                <button
+                    className='cursor-pointer bg-green-800 text-white rounded px-1'
+                    onClick={() => dialogRef.current.open()}
+                >Open Dialog</button>
+                <button
+                    className='cursor-pointer bg-red-800 text-white rounded px-1'
+                    onClick={() => dialogRef.current.reset()}
+                >Reset Dialog</button>
+                <button
+                    className='cursor-pointer bg-yellow-800 text-white rounded px-1'
+                    onClick={() => dialogRef.current.close()}
+                >Close Dialog</button>
             </div>
             <Dialog ref={dialogRef} />
         </div>

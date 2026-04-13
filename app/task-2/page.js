@@ -78,6 +78,7 @@ export default function Page() {
             </div>
             <div className="flex flex-row mt-2 space-x-2">
                 <select
+                    value={currentState}
                     onChange={(e) => setCurrentState(e.target.value)}
                 >
                     <option >Select state </option>
@@ -124,6 +125,7 @@ export default function Page() {
                             {
                                 p.id === editingState ?
                                     <input
+                                        value={currentState}
                                         placeholder="edited state"
                                         className="min-w-0"
                                         onChange={(e) => setCurrentState(e.target.value)}>
@@ -138,6 +140,7 @@ export default function Page() {
                             {
                                 p.id === editingState ?
                                     <input
+                                        value={singleCity}
                                         className="bg-gray-200 rounded-sm min-w-0"
                                         onChange={(e) => setSingleCity(e.target.value)}
                                         placeholder="city"></input> :
